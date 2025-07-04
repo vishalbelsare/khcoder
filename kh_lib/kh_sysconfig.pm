@@ -1313,6 +1313,36 @@ sub ClearGeometries{
 	return $self;
 }
 
+sub show_suggest_on_startup{
+	my $self = shift;
+	my $new = shift;
+	
+	if (defined($new)) {
+		$self->{show_suggest_on_startup} = $new;
+	}
+	
+	unless ( defined($self->{show_suggest_on_startup}) ){
+		$self->{show_suggest_on_startup} = 1;
+	}
+	
+	return $self->{show_suggest_on_startup};
+}
+
+sub suggest_stands_with_main{
+	my $self = shift;
+	my $new = shift;
+	
+	if (defined($new)) {
+		$self->{suggest_stands_with_main} = $new;
+	}
+	
+	unless ( defined($self->{suggest_stands_with_main}) ){
+		$self->{suggest_stands_with_main} = 1;
+	}
+	
+	return $self->{suggest_stands_with_main};
+}
+
 sub DocSrch_CutLength{
 	my $self = shift;
 	if (defined($self->{DocSrch_CutLength})){
