@@ -28,6 +28,15 @@ sub _new{
 	$self->menu->refresh;
 	$self->inner->refresh;
 
+	$self->{win_obj}->bind(
+		'<Configure>' => sub {
+			#print "Main window moved.\n";
+			if ($::main_gui->if_opened('suggest')){
+				$::main_gui->get('suggest')->delayed_follow;
+			}
+		}
+	);
+
 	# スプラッシュWindowを閉じる
 	if ($::config_obj->os eq 'win32'){
 		$::splash->Destroy if $::splash;
