@@ -8,6 +8,9 @@ use Tk;
 
 sub _new{
     my $self = shift;
+
+    $self->{win_obj}->withdraw;
+
     my $mw = $::main_gui->mw;
     my $win = $self->{win_obj};
     $win->title( kh_msg->get('win_title') );
@@ -116,11 +119,20 @@ sub _new{
 
     $self->refresh;
 
-    # set to natural size
-    $self->{win_obj}->geometry("");
-    $self->{win_obj}->update;
-
     $self->follow_main if $::config_obj->suggest_stands_with_main;
+
+    # set to natural size
+    my $g = $::config_obj->win_gmtry($self->win_name);
+    print "gui_window::suggest::_new: geometry saved: $g\n";
+    unless ( length( $g ) ) {
+        print "gui_window::suggest::_new: no geometry saved, setting to natural size\n";
+        $self->{win_obj}->geometry("");
+        $self->{win_obj}->update;
+    }
+
+	$self->{win_obj}->deiconify;
+	$self->{win_obj}->raise;
+	$self->{win_obj}->focus;
 
     return $self;
 }

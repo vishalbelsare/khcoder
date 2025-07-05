@@ -159,7 +159,12 @@ sub close{
 	use screen_code::r_plot_multiselect;
 	screen_code::r_plot_multiselect::close_KWIC();
 
+	# remember position of "suggest" window
+	$self->get('suggest')->close if $self->if_opened('suggest');
+
+	# remember position of main window
 	$::config_obj->win_gmtry($self->win_name, $self->win_obj->geometry);
+
 	$::config_obj->save;
 
 	# End sub-process

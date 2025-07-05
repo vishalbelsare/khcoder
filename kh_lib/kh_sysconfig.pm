@@ -253,6 +253,9 @@ sub win_content{
 	if ($self->{main_window}){
 		$content .= "main_window\t$self->{main_window}\n";
 	}
+	if ($self->{suggest}){
+		$content .= "suggest\t$self->{suggest}\n";
+	}
 	return $content;
 }
 #------------------#
